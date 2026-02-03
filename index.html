@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog watch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+    <audio id="click-sound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"></audio>
+
+<div class="theme-container">
+    <label class="switch">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider"></span>
+    </label>
+    <span id="mode-text">Switch to Dark Mode</span>
+</div>
+
+    <div class="watch-frame">
+        <h1>Smart Hybrid</h1>
+        
+        <div class="date-container">
+            <span id="day-name">Day</span>, 
+            <span id="full-date">00 Month 0000</span>
+        </div>
+
+        <div class="clock">
+            <div id="hour"></div>
+            <div id="minute"></div>
+            <div id="second"></div>
+        </div>
+
+        <div class="digital-container">
+            <div id="digital-display">00:00:00</div>
+            <div id="ampm">AM</div>
+        </div>
+    </div>
+</body>
+
+
+
+<script src="script.js"></script>
+</html>

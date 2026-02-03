@@ -1,0 +1,155 @@
+/* --- Google Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* --- Light Mode Variables --- */
+:root {
+    --bg-color: #e0e5ec;
+    --frame-bg: rgba(255, 255, 255, 0.4);
+    --text-color: #313131;
+    --shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+    --clock-border: #ffffff;
+    --accent: #00d4ff;
+}
+
+/* --- Dark Mode Variables --- */
+body.dark-mode {
+    --bg-color: #121212;
+    --frame-bg: rgba(30, 30, 30, 0.6);
+    --text-color: #00d4ff;
+    --shadow: 10px 10px 25px #000000, -5px -5px 20px #252525;
+    --clock-border: #444444;
+}
+
+/* --- Global Layout --- */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px;
+    flex-direction: column;
+}
+
+/* --- Theme Switcher --- */
+.theme-container {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.switch {
+    position: relative;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #333;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider { background-color: var(--accent); }
+input:checked + .slider:before { transform: translateX(26px); }
+
+/* --- Watch Frame & Animations --- */
+.watch-frame {
+    background: var(--frame-bg);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 50px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    transition: all 0.5s ease;
+    animation: float 4s ease-in-out infinite;
+}
+
+.watch-frame:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* --- Analog Clock --- */
+.clock {
+    height: 250px;
+    width: 250px;
+    background: url('https://media.istockphoto.com/id/1389162347/vector/blank-clock-dial-face-vector-illustration-watch-scale-template.jpg?s=612x612&w=0&k=20&c=Jfjmw-cQwV9mEP0pagkHsczxlc1STeVY3_pM_1s8nzs=');
+    background-size: cover;
+    border-radius: 50%;
+    border: 8px solid var(--clock-border);
+    position: relative;
+    margin: 20px auto;
+    box-shadow: inset 5px 5px 15px rgba(0,0,0,0.1);
+}
+
+/* --- Hands --- */
+#hour, #minute, #second {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    left: 50%; bottom: 50%;
+    transform-origin: bottom;
+}
+
+#hour::before { content: ""; height: 60px; width: 6px; background: var(--text-color); border-radius: 5px; }
+#minute::before { content: ""; height: 90px; width: 4px; background: #888; border-radius: 5px; }
+#second::before { content: ""; height: 110px; width: 2px; background: #ff0000; }
+
+/* --- Date & Digital Display --- */
+.date-container { font-size: 1.1rem; font-weight: 500; margin-bottom: 10px; opacity: 0.8; }
+
+.digital-container {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+    display: inline-block;
+}
+
+#digital-display { font-size: 2rem; font-weight: bold; }
+
+/* --- Responsive Layout --- */
+@media (max-width: 768px) { /* Tablet */
+    .watch-frame { max-width: 320px; padding: 30px; }
+    .clock { height: 200px; width: 200px; }
+    #hour::before { height: 50px; }
+    #minute::before { height: 75px; }
+    #second::before { height: 95px; }
+}
+
+@media (max-width: 480px) { /* Mobile */
+    .watch-frame { max-width: 280px; border-radius: 30px; padding: 20px; }
+    .clock { height: 180px; width: 180px; border-width: 5px; }
+    h1 { font-size: 1.4rem; }
+    #digital-display { font-size: 1.6rem; }
+}
